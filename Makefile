@@ -5,11 +5,14 @@ LDFLAGS = -lSDL2 -lSDL2_image
 all : bin/app
 
 #tmp/class.o src/class.cpp include/class.h
+#	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+tmp/Texture.o : src/Texture.cpp include/Texture.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-tmp/main.o src/proto.cpp #include/class.h
+tmp/main.o : src/main.cpp include/Texture.h #include/class.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-bin/app : tmp/main.o #tmp/class.o
+bin/app : tmp/main.o tmp/Texture.o #tmp/class.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
