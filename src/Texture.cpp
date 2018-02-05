@@ -24,7 +24,7 @@ bool Texture::loadFromFile(SDL_Renderer* renderer, string path){
 
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == NULL){
-        printf("Unable to load image at %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
+        printf("Unable to load image at %s! SDL Error: %s\n", path.c_str(), IMG_GetError());
     } else {
         newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
         if(newTexture == NULL){

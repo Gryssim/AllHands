@@ -45,7 +45,6 @@ bool GameWindow::init(){
 				success = false;
 			} else {
 				//init renderer
-				SDL_SetRenderDrawColor(m_Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
 				int imgFlags = IMG_INIT_PNG;
 				if(!(IMG_Init(imgFlags) & imgFlags)){

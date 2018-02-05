@@ -11,14 +11,11 @@ int main(int argc, char* argv[]){
 	bool quit = false;
 	GameWindow window(800, 600, "GameWindow");
 	Texture testTexture;
-	
-	testTexture.loadFromFile(window.getRenderer(), "./Captain.png");
-
-	testTexture.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
 
 	if(!window.init()){
 		printf("Unable to initialize GameWindow!");
 	} else {
+		testTexture.loadFromFile(window.getRenderer(), "../assets/sprites/Engineer.png");
 		SDL_Event event;
 
 		while(!quit){
@@ -27,6 +24,11 @@ int main(int argc, char* argv[]){
 					quit = true;
 				}
 			}
+			SDL_SetRenderDrawColor(window.getRenderer(), 0x25, 0x65, 0xEF, 0xFF);
+			SDL_RenderClear(window.getRenderer());
+
+			testTexture.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
+
 			SDL_RenderPresent(window.getRenderer());
 		}
 		window.close();
