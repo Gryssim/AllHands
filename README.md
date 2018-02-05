@@ -1,6 +1,11 @@
 # AllHands
 
-### This is repository for the group project in CSCI 345 Video Game Design @ Colorado Mesa University
+### This is the repository for the group project for CSCI 345, Video Game Design, @ Colorado Mesa University
+
+All Hands will explore the idea of a fully crewed starship, rather then abstracting the idea to a handfull of crew members.
+- **Manage the needs of hundreds of crew as they maintain and operate your fully operational starship.**
+- **As Captain, react to events relating to your crew, your ship, and your mission.**
+
 
 ### Douglas Plock and Cody Grinstead   
 
