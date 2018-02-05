@@ -15,7 +15,7 @@ GameWindow::GameWindow(int width, int height, string winTitle){
 }
 
 GameWindow::~GameWindow(){
-
+	close();
 }
 
 bool GameWindow::init(){
@@ -57,6 +57,15 @@ bool GameWindow::init(){
 	}
 	return success;
 }
+//Not sure if this will be needed as we'll load textures as we create Texture objects?
+//Or should we offload all sprite loading to the window class...
+//I feel we want explicit references to the sprites to update them.
+//Leaving in class until we make a decision on this.
+bool GameWindow::loadMedia(){
+	bool success = true;
+
+	return success;
+}
 
 //window.close will terminate the window. Call on exit of program. (Maybe rethink name of class?)
 void GameWindow::close(){
@@ -67,4 +76,20 @@ void GameWindow::close(){
 
     IMG_Quit();
     SDL_Quit();
+}
+
+SDL_Window* GameWindow::getWindow(){
+	return m_Window;
+}
+
+SDL_Renderer* GameWindow::getRenderer(){
+	return m_Renderer;
+}
+
+int GameWindow::getWindowHeight(){
+	return m_WinHeight;
+}
+
+int GameWindow::getWindowWidth(){
+	return m_WinWidth;
 }

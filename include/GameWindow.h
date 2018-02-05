@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string>
 
+#include "../include/Texture.h"
+
 using namespace std;
 
 class GameWindow {
@@ -12,9 +14,18 @@ class GameWindow {
 
     bool init();
 
+    bool loadMedia();
+
     void close();
 
+    SDL_Window* getWindow();
+    SDL_Renderer* getRenderer();
+
+    int getWindowHeight();
+    int getWindowWidth();
+
     private:
+
     SDL_Window* m_Window;
     SDL_Renderer* m_Renderer;
 

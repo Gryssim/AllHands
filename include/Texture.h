@@ -9,18 +9,18 @@ using namespace std;
 class Texture{
     public:
     //Constructor
-    Texture(SDL_Renderer* renderer);
+    Texture();
     //Deconstructor
     ~Texture();
     
     //Load desired image (png) from specified path
-    bool loadFromFile(string path);
+    bool loadFromFile(SDL_Renderer* renderer, string path);
 
     //For deleting a texture, free up resources.
     void free();
 
     //draw the texture
-    void draw(int x, int y);
+    void draw(SDL_Renderer* renderer, int xPos, int yPos);
 
     //get dimensions of image
     int getWidth();

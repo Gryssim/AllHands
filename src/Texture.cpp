@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Texture::Texture(SDL_Renderer* renderer){
+Texture::Texture(){
     m_Texture = NULL;
-    m_Renderer = renderer;
+    m_Renderer = NULL;
     m_Width = 0;
     m_Height = 0;
 }
@@ -17,16 +17,16 @@ Texture::~Texture(){
     free();
 }
 
-bool Texture::loadFromFile(string path){
+bool Texture::loadFromFile(SDL_Renderer* renderer, string path){
     //Remove any existing texture
     free();
     SDL_Texture* newTexture = NULL;
 
     SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == NULL){
-        printf("Unable to load texture at %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
+        printf("Unable to load image at %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
     } else {
-        newTexture = SDL_CreateTextureFromSurface(m_Renderer, loadedSurface);
+        newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
         if(newTexture == NULL){
             printf("Unable create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
         } else {
@@ -36,7 +36,9 @@ bool Texture::loadFromFile(string path){
         }
         SDL_FreeSurface(loadedSurface);
     }
+
     m_Texture = newTexture;
+    printf("Texture dims - w: %i   h: %i\n", m_Width, m_Height);
     return m_Texture != NULL;
 }
 
@@ -52,10 +54,10 @@ void Texture::free(){
     }
 }
 
-void Texture::draw(int x, int y){
+void Texture::draw(SDL_Renderer* renderer, int xPos, int yPos){
     //Set rendering space and draw to screen
-    SDL_Rect renderQuad = { x, y, m_Width, m_Height };
-    SDL_RenderCopy(m_Renderer, m_Texture, NULL, &renderQuad);
+    SDL_Rect renderQuad = { xPos, yPos, m_Width, m_Height };
+    SDL_RenderCopy(renderer, m_Texture, NULL, &renderQuad);
 }
 
 int Texture::getWidth(){

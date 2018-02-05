@@ -4,12 +4,17 @@
 #include <stdio.h>
 
 #include "../include/GameWindow.h"
+#include "../include/Texture.h"
 
-bool loadMedia();
 
 int main(int argc, char* argv[]){
 	bool quit = false;
-	GameWindow window(800, 600, "This is the new window");
+	GameWindow window(800, 600, "GameWindow");
+	Texture testTexture;
+	
+	testTexture.loadFromFile(window.getRenderer(), "./Captain.png");
+
+	testTexture.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
 
 	if(!window.init()){
 		printf("Unable to initialize GameWindow!");
@@ -22,15 +27,10 @@ int main(int argc, char* argv[]){
 					quit = true;
 				}
 			}
+			SDL_RenderPresent(window.getRenderer());
 		}
 		window.close();
 	}
 	
 	return 0;
-}
-
-bool loadMedia(){
-	bool success = true;
-
-	return success;
 }
