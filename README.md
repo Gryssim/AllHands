@@ -11,7 +11,7 @@ All Hands will explore the idea of a fully crewed starship, rather then abstract
 
 ## Road Map (Specifics)
 
-- Read sprites and display them to a SDL Window using SDL_Textures
+- ~~Read sprites and display them to a SDL Window using SDL_Textures~~
 - Create Ship prototype sprite (Veryveryvery basic)
 - Figure out pathing inside of a sprite.
 - Maybe use a Drawable interface idea for grouping all characters to be drawn?
