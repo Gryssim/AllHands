@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Texture::Texture(){
+Texture::Texture(SDL_Renderer* renderer){
     m_Texture = NULL;
-    m_Renderer = NULL;
+    m_Renderer = renderer;
     m_Width = 0;
     m_Height = 0;
 }

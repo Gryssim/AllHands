@@ -9,7 +9,7 @@ using namespace std;
 class Texture{
     public:
     //Constructor
-    Texture();
+    Texture(SDL_Renderer* renderer);
     //Deconstructor
     ~Texture();
     

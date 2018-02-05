@@ -10,9 +10,12 @@ all : bin/app
 tmp/Texture.o : src/Texture.cpp include/Texture.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-tmp/main.o : src/main.cpp include/Texture.h #include/class.h
+tmp/GameWindow.o : src/GameWindow.cpp include/GameWindow.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-bin/app : tmp/main.o tmp/Texture.o #tmp/class.o
+tmp/main.o : src/main.cpp include/Texture.h include/GameWindow.h #include/class.h
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+bin/app : tmp/main.o tmp/Texture.o tmp/GameWindow.o #tmp/class.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
