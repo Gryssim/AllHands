@@ -1,3 +1,6 @@
+#ifndef GAME_WINDOW_H
+#define GAME_WINDOW_H
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdio.h>
@@ -34,3 +37,5 @@ class GameWindow {
 
     string m_WinTitle;
 };
+
+#endif

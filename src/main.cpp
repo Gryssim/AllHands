@@ -5,12 +5,15 @@
 
 #include "../include/GameWindow.h"
 #include "../include/Texture.h"
+#include "../include/Hand.h"
+#include "../include/Crew.h"
 
 
 int main(int argc, char* argv[]){
 	bool quit = false;
 	GameWindow window(800, 600, "GameWindow");
 	Texture testTexture;
+	Crew testCrew;
 
 	if(!window.init()){
 		printf("Unable to initialize GameWindow!");
