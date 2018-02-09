@@ -54,9 +54,10 @@ void Texture::free(){
     }
 }
 
+//Position drawing from center of texture as apposed to top left corner.
 void Texture::draw(SDL_Renderer* renderer, int xPos, int yPos){
     //Set rendering space and draw to screen
-    SDL_Rect renderQuad = { xPos, yPos, m_Width, m_Height };
+    SDL_Rect renderQuad = { xPos - m_Width / 2, yPos - m_Height / 2, m_Width, m_Height };
     SDL_RenderCopy(renderer, m_Texture, NULL, &renderQuad);
 }
 

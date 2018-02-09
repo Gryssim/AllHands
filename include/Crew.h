@@ -16,6 +16,11 @@ class Crew{
     bool addHand(Hand newHand);
     bool removeHand(Hand newHand);
 
+    void draw(SDL_Renderer* renderer);
+
+    int getMaxCrew();
+    int getCurrentCrewCount();
+
     //TODO: Figure out what the crew does... Maybe pathfinding checks? Job queue? TBD
     private:
     int m_MaxCrew;

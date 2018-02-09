@@ -13,7 +13,12 @@ class Hand{
     public:
 
     Hand(Texture* texture, HandOccupation job);
+    Hand(Texture* texture, HandOccupation job, int xPos, int yPos);
     ~Hand();
+
+    bool operator==(const Hand& rightHand) const;
+
+    void draw(SDL_Renderer* renderer);
 
     int getId();
 
@@ -22,7 +27,7 @@ class Hand{
     private:
     Texture* m_HandTexture;
     HandOccupation m_Job;
-
+    int m_xPos, m_yPos;
     int m_Id;
 };
 
