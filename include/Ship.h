@@ -1,6 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#include "../include/Vector2.h"
 #include "../include/Texture.h"
 
 class Ship{
@@ -9,6 +10,7 @@ class Ship{
     ~Ship();
 
     void draw(SDL_Renderer* renderer, int xPos, int yPos);
+    void draw(SDL_Renderer* renderer, Vector2 pos);
 
     //Will probably have a bunch of other member methods that have to do with malfunctions, damage, 
     // etc.

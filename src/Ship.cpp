@@ -6,7 +6,8 @@ Ship::Ship(Texture* texture){
 }
 
 Ship::~Ship(){
-
+    m_ShipTexture->free();
+    m_ShipTexture = NULL;
 }
 
 int Ship::getTextureWidth(){
@@ -20,6 +21,9 @@ int Ship::getTextureHeight(){
 void Ship::draw(SDL_Renderer* renderer, int xPos, int yPos){
     //printf("Ship Texture Position - xPos: %i  yPos: %i\n", xPos, yPos);
     m_ShipTexture->draw(renderer, xPos, yPos);
+}
+void Ship::draw(SDL_Renderer* renderer, Vector2 pos){
+    m_ShipTexture->draw(renderer, pos.getX(), pos.getY());
 }
 
 int Ship::getHull(){   

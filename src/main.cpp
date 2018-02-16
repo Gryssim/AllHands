@@ -12,6 +12,7 @@
 int main(int argc, char* argv[]){
 	bool quit = false;
 	GameWindow window(800, 600, "GameWindow");
+	Texture* testTile = new Texture;
 	Texture* captTexture = new Texture;
 	Texture* engTexture = new Texture;
 	Texture* redShirtTexture = new Texture;
@@ -31,7 +32,7 @@ int main(int argc, char* argv[]){
 		//Create crew
 		for(int i = 0; i < testCrew.getMaxCrew(); ++i){
 			//printf("%i\n", i);
-			Hand newHand(engTexture, ENGINEER, i * 5, i * 5);
+			Hand newHand(engTexture, ENGINEER, (i * 10) + 10, window.getWindowHeight() / 2);
 			testCrew.addHand(newHand);
 		}
 
@@ -43,7 +44,7 @@ int main(int argc, char* argv[]){
 					quit = true;
 				}
 			}
-			SDL_SetRenderDrawColor(window.getRenderer(), 0x25, 0x65, 0xEF, 0xFF);
+			SDL_SetRenderDrawColor(window.getRenderer(), 0x25, 0x35, 0x50, 0xFF);
 			SDL_RenderClear(window.getRenderer());
 
 			//testTexture.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
@@ -55,6 +56,10 @@ int main(int argc, char* argv[]){
 
 			SDL_RenderPresent(window.getRenderer());
 		}
+		captTexture->free();
+		engTexture->free();
+		redShirtTexture->free();
+		shipTexture->free();
 		window.close();
 	}
 	

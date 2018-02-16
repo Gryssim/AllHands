@@ -2,7 +2,7 @@
 #define HAND_H
 
 //General class for a singular Hand/crewman.
-#include <string>
+#include "../include/Vector2.h"
 #include "../include/Texture.h"
 
 using namespace std;
@@ -14,6 +14,7 @@ class Hand{
 
     Hand(Texture* texture, HandOccupation job);
     Hand(Texture* texture, HandOccupation job, int xPos, int yPos);
+    Hand(Texture* texture, HandOccupation job, Vector2 pos);
     ~Hand();
 
     bool operator==(const Hand& rightHand) const;
@@ -21,6 +22,10 @@ class Hand{
     void draw(SDL_Renderer* renderer);
 
     int getId();
+
+    Vector2 getXYPos();
+    int getX();
+    int getY();
 
     Texture* getTexture();
 
