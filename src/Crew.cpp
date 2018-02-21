@@ -34,6 +34,9 @@ bool Crew::removeHand(Hand newHand){
 
 void Crew::draw(SDL_Renderer* renderer){
     for(int i = 0; i < m_AllHands.size(); ++i){
+        if(m_AllHands[i].getTexture() == NULL){
+            printf("Ugh\n");
+        }
         m_AllHands[i].draw(renderer);
     }
 }

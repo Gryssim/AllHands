@@ -25,11 +25,14 @@ tmp/Crew.o : src/Crew.cpp include/Crew.h
 tmp/Ship.o : src/Ship.cpp include/Ship.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-tmp/main.o : src/main.cpp include/Vector2.h include/Texture.h \ 
+tmp/main.o : src/main.cpp include/Vector2.h include/Texture.h \
  include/GameWindow.h include/Hand.h include/Crew.h include/Ship.h #include/class.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-bin/app : tmp/main.o tmp/Vector2.o tmp/Texture.o \ 
+bin/app : tmp/main.o tmp/Vector2.o tmp/Texture.o \
  tmp/GameWindow.o tmp/Hand.o tmp/Crew.o tmp/Ship.o#tmp/class.o 
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
+clean :
+	rm -f tmp/*
+	rm -f bin/*

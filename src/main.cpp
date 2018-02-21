@@ -24,7 +24,9 @@ int main(int argc, char* argv[]){
 	} else {
 		captTexture->loadFromFile(window.getRenderer(), "../assets/sprites/Captain.png");
 		shipTexture->loadFromFile(window.getRenderer(), "../assets/Ships/Ship_0001.png");
-		engTexture->loadFromFile(window.getRenderer(), "../assets/sprites/Engineer.png");
+		if(engTexture->loadFromFile(window.getRenderer(), "../assets/sprites/Engineer.png")){
+			printf("Eng loaded successfully.\n");
+		}
 		redShirtTexture->loadFromFile(window.getRenderer(), "../assets/sprites/RedShirt.png");
 		Hand testHand(captTexture, CAPTAIN, 50, 50);
 		Ship testShip(shipTexture);
@@ -32,6 +34,7 @@ int main(int argc, char* argv[]){
 		//Create crew
 		for(int i = 0; i < testCrew.getMaxCrew(); ++i){
 			//printf("%i\n", i);
+
 			Hand newHand(engTexture, ENGINEER, (i * 10) + 10, window.getWindowHeight() / 2);
 			testCrew.addHand(newHand);
 		}
@@ -48,7 +51,7 @@ int main(int argc, char* argv[]){
 			SDL_RenderClear(window.getRenderer());
 
 			//testTexture.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
-			testShip.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
+			//testShip.draw(window.getRenderer(), window.getWindowWidth() / 2, window.getWindowHeight() / 2);
 			//shipTexture->draw(window.getRenderer(), 50, 50);
 			//testHand.draw(window.getRenderer());
 
