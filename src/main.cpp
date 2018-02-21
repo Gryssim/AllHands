@@ -18,6 +18,7 @@ int main(int argc, char* argv[]){
 	Texture* redShirtTexture = new Texture;
 	Texture* shipTexture = new Texture;
 	Crew testCrew;
+	Crew anotherTestCrew;
 
 	if(!window.init()){
 		printf("Unable to initialize GameWindow!");
@@ -36,7 +37,9 @@ int main(int argc, char* argv[]){
 			//printf("%i\n", i);
 
 			Hand newHand(engTexture, ENGINEER, (i * 10) + 10, window.getWindowHeight() / 2);
+			//Hand anotherHand(captTexture, CAPTAIN, Vector2((i * 10) + 10, window.getWindowHeight() / 2 - 20));
 			testCrew.addHand(newHand);
+			//anotherTestCrew.addHand(anotherHand);
 		}
 
 		SDL_Event event;
@@ -56,8 +59,9 @@ int main(int argc, char* argv[]){
 			//testHand.draw(window.getRenderer());
 
 			testCrew.draw(window.getRenderer());
-
+			//anotherTestCrew.draw(window.getRenderer());
 			SDL_RenderPresent(window.getRenderer());
+			SDL_Delay(1000/60);
 		}
 		captTexture->free();
 		engTexture->free();

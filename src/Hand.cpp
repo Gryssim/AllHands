@@ -23,8 +23,7 @@ Hand::Hand(Texture* texture, HandOccupation job, Vector2 pos){
 }
 
 Hand::~Hand(){
-    m_HandTexture->free();
-    m_HandTexture = NULL;
+    
 }
 
 bool Hand::operator==(const Hand& rightHand) const{
@@ -33,6 +32,9 @@ bool Hand::operator==(const Hand& rightHand) const{
 
 void Hand::draw(SDL_Renderer* renderer){
     //printf("Hand Pos: x - %i    y - %i\n", m_xPos, m_yPos);
+    if(m_HandTexture == NULL){
+        printf("Ugh in Hand Class");
+    }
     m_HandTexture->draw(renderer, m_xPos, m_yPos);
 }
 
