@@ -7,7 +7,7 @@
 
 using namespace std;
 
-enum HandOccupation { CAPTAIN, ENGINEER, RED_SHIRT, SECURITY, PILOT, OCCUPATION_COUNT } ;
+enum HandOccupation { CAPTAIN, ENGINEER, REDSHIRT, SECURITY, PILOT, OCCUPATION_COUNT, INVALID } ;
 
 class Hand{
     public:
@@ -35,5 +35,8 @@ class Hand{
     int m_xPos, m_yPos;
     int m_Id;
 };
+
+
+string HandOccupationToString(HandOccupation job);
 
 #endif
