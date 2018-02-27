@@ -4,6 +4,8 @@
 #include <SDL2/SDL.h>
 #include <string>
 
+#include "../include/Vector2.h"
+
 using namespace std;
 
 class Texture{
@@ -13,6 +15,9 @@ class Texture{
     //Deconstructor
     ~Texture();
     
+    //Load desired portion of sprite sheet
+    bool LoadFromSheet(SDL_Renderer* renderer, string path, SDL_Rect srcRect);
+
     //Load desired image (png) from specified path
     bool loadFromFile(SDL_Renderer* renderer, string path);
 
@@ -21,6 +26,7 @@ class Texture{
 
     //draw the texture
     void draw(SDL_Renderer* renderer, int xPos, int yPos);
+    void draw(SDL_Renderer* renderer, Vector2 pos);
 
     //get dimensions of image
     int getWidth();

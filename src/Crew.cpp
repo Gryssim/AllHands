@@ -2,7 +2,8 @@
 #include "../include/Crew.h"
 
 Crew::Crew(){
-
+    m_MaxCrew = 20; // Not Final
+    m_CurrentCrewCount = 0;
 }
 
 Crew::~Crew(){
@@ -29,4 +30,22 @@ bool Crew::removeHand(Hand newHand){
     if(success) m_CurrentCrewCount -= 1;
 
     return success;
+}
+
+void Crew::draw(SDL_Renderer* renderer){
+    for(int i = 0; i < m_AllHands.size(); ++i){
+        if(m_AllHands[i].getTexture() == NULL){
+            printf("Ugh\n");
+        } /*else {
+            printf("Texture exists!\n");
+        }*/
+        m_AllHands[i].draw(renderer);
+    }
+}
+
+int Crew::getMaxCrew(){
+    return m_MaxCrew;
+}
+int Crew::getCurrentCrewCount(){
+    return m_CurrentCrewCount;
 }
