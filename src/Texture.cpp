@@ -64,7 +64,7 @@ void Texture::free(){
 //Position drawing from center of texture as apposed to top left corner.
 void Texture::draw(SDL_Renderer* renderer, int xPos, int yPos){
     if(m_Texture == NULL){
-        //printf("This is getting dumb\n");
+        printf("This is getting dumb\n");
     }
     //Set rendering space and draw to screen
     SDL_Rect renderQuad = { xPos - m_Width / 2, yPos - m_Height / 2, m_Width, m_Height };

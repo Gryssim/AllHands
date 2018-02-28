@@ -7,7 +7,15 @@
 
 using namespace std;
 
-enum HandOccupation { CAPTAIN, ENGINEER, REDSHIRT, SECURITY, PILOT, OCCUPATION_COUNT, INVALID } ;
+enum HandOccupation {
+    CAPTAIN,
+    ENGINEER,
+    REDSHIRT,
+    SECURITY,
+    PILOT,
+    OCCUPATION_COUNT,
+    INVALID 
+    };
 
 class Hand{
     public:

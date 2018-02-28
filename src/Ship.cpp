@@ -1,33 +1,22 @@
 #include "../include/Ship.h"
 
-Ship::Ship(){
-    
-}
 
-Ship::Ship(Texture* texture){
-    m_ShipTexture = texture;
+Ship::Ship(){
     m_Hull = 100;
 }
 
 Ship::~Ship(){
-    m_ShipTexture->free();
-    m_ShipTexture = NULL;
+
 }
 
-int Ship::getTextureWidth(){
-    return m_ShipTexture->getWidth();
+void Ship::addTile(ShipTile tile){
+    m_ShipTiles.push_back(tile);
 }
 
-int Ship::getTextureHeight(){
-    return m_ShipTexture->getHeight();
-}
-
-void Ship::draw(SDL_Renderer* renderer, int xPos, int yPos){
-    //printf("Ship Texture Position - xPos: %i  yPos: %i\n", xPos, yPos);
-    m_ShipTexture->draw(renderer, xPos, yPos);
-}
-void Ship::draw(SDL_Renderer* renderer, Vector2 pos){
-    m_ShipTexture->draw(renderer, pos.getX(), pos.getY());
+void Ship::draw(SDL_Renderer* renderer){
+    for (int i = 0; i < m_ShipTiles.size(); ++i){
+        m_ShipTiles[i].draw(renderer);
+    }
 }
 
 int Ship::getHull(){   

@@ -46,6 +46,7 @@ int main(int argc, char* argv[]){
 			SDL_SetRenderDrawColor(window.getRenderer(), 0x00, 0x00, 0x20, 0xFF);
 			SDL_RenderClear(window.getRenderer());
 			gameWorld.createCrew();
+			gameWorld.createShip();
 			gameWorld.draw(window.getRenderer());
 			//testCrew.draw(window.getRenderer());
 

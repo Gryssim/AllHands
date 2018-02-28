@@ -7,6 +7,7 @@
 #include "../include/Hand.h"
 #include "../include/Crew.h"
 #include "../include/Ship.h"
+#include "../include/ShipTile.h"
 
 class World{
     public:
@@ -14,6 +15,8 @@ class World{
     ~World();
 
     bool loadMedia(SDL_Renderer* renderer);
+
+    void createShip();
 
     void createCrew();
 
@@ -26,7 +29,10 @@ class World{
     private:
     Ship m_Ship;
     Crew m_Crew;
+    Texture* t_TestTileTexture;
+
     map<HandOccupation, Texture*> m_HandTextureMap;
+    map<Tile_type, Texture*> m_TileTextureMap;
 
 };
 

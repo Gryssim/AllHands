@@ -1,29 +1,31 @@
 #ifndef SHIP_H
 #define SHIP_H
 
+#include <vector>
+
 #include "../include/Vector2.h"
 #include "../include/Texture.h"
+#include "../include/ShipTile.h"
+
+using namespace std;
 
 class Ship{
     public:
     Ship();
-    Ship(Texture* texture);
     ~Ship();
 
-    void draw(SDL_Renderer* renderer, int xPos, int yPos);
-    void draw(SDL_Renderer* renderer, Vector2 pos);
+    void addTile(ShipTile tile);
+
+    void draw(SDL_Renderer* renderer);
 
     //Will probably have a bunch of other member methods that have to do with malfunctions, damage, 
     // etc.
-    
-    int getTextureWidth();
-    int getTextureHeight();
 
     int getHull();
 
     private:
     int m_Hull;
-    Texture* m_ShipTexture;
+    vector<ShipTile> m_ShipTiles;
 };
 
 #endif
