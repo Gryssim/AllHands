@@ -6,8 +6,7 @@ Tile::Tile(int xPos, int yPos){
 }
 
 Tile::~Tile(){
-    m_TileTexture->free();
-    m_TileTexture = NULL;
+
 }
 
 void Tile::draw(SDL_Renderer* renderer, int xPos, int yPos){

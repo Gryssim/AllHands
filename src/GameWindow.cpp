@@ -15,7 +15,7 @@ GameWindow::GameWindow(int width, int height, string winTitle){
 }
 
 GameWindow::~GameWindow(){
-	close();
+
 }
 
 bool GameWindow::init(){

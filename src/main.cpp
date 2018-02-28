@@ -61,3 +61,15 @@ int main(int argc, char* argv[]){
 	
 	return 0;
 }
+
+/*
+
+frame start
+
+do updates
+do draws
+
+frame length = start - now
+
+
+*/

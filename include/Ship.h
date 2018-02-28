@@ -6,6 +6,7 @@
 
 class Ship{
     public:
+    Ship();
     Ship(Texture* texture);
     ~Ship();
 

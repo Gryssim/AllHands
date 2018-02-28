@@ -1,5 +1,9 @@
 #include "../include/Ship.h"
 
+Ship::Ship(){
+    
+}
+
 Ship::Ship(Texture* texture){
     m_ShipTexture = texture;
     m_Hull = 100;

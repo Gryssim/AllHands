@@ -14,7 +14,7 @@ Texture::Texture(){
 }
 
 Texture::~Texture(){
-    free();
+    //free();
 }
 
 bool Texture::LoadFromSheet(SDL_Renderer* renderer, string path, SDL_Rect srcRect){
