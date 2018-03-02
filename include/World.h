@@ -9,6 +9,12 @@
 #include "../include/Ship.h"
 #include "../include/ShipTile.h"
 
+const int MAX_STARS = 100;
+
+struct backgroundStar{
+    int posX, posY;
+};
+
 class World{
     public:
     World();
@@ -21,9 +27,11 @@ class World{
     void createCrew();
 
     void draw(SDL_Renderer* renderer);
+    void drawStar(SDL_Renderer* renderer, backgroundStar star, int scale);
 
     void update();
 
+    void initBackground();
     void updateBackground();
 
     private:
@@ -31,6 +39,7 @@ class World{
     Crew m_Crew;
     Texture* t_TestTileTexture;
 
+    backgroundStar m_Stars[MAX_STARS];
     map<HandOccupation, Texture*> m_HandTextureMap;
     map<Tile_type, Texture*> m_TileTextureMap;
 

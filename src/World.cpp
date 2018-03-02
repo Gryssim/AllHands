@@ -1,12 +1,14 @@
 
 #include <string>
+#include <stdlib.h>
+#include <time.h>
 
 #include "../include/World.h"
 #include "../include/Hand.h"
 
 
 World::World(){
-
+    initBackground();
 }
 
 World::~World(){
@@ -52,14 +54,73 @@ void World::createCrew(){
 }
 
 void World::draw(SDL_Renderer* renderer){
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    for(int i = 0; i < MAX_STARS; ++i){
+        if(i % 10 == 0){
+            //Closest stars -- scale by 5
+            drawStar(renderer, m_Stars[i], 3);                        
+        } 
+        else if(i % 5 == 0){
+            //Next stars back -- scale default by 2
+            drawStar(renderer, m_Stars[i], 2);
+        }
+        else {
+            //furthest stars -- each rect maybe 2px x 4px?
+            drawStar(renderer, m_Stars[i], 1);
+        }
+    }
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x20, 0xFF);
     m_Ship.draw(renderer);
     m_Crew.draw(renderer);
 }
 
-void World::update(){
+void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
+    int defLength = 4, defWidth = 2;
+    SDL_Rect vertRect = {
+        star.posX - ((defWidth / 2)* scale),    //x
+        star.posY,                              //y
+        defLength * scale,                      //h
+        defWidth * scale                        //w
+    }; 
+    SDL_Rect horRect = {
+        star.posX,                              //x
+        star.posY - ((defWidth / 2) * scale),   //y
+        defWidth * scale,                       //h
+        defLength * scale                       //w
+    };         
+    SDL_RenderFillRect(renderer, &vertRect);
+    SDL_RenderFillRect(renderer, &horRect);
+}
 
+void World::update(){
+    updateBackground();
+}
+
+void World::initBackground(){
+    srand(time(NULL));
+    for(int i = 0; i < MAX_STARS; ++i){
+        m_Stars[i].posX = rand() % 800 + 1;
+        m_Stars[i].posY = rand() % 600 + 1;
+    }
 }
 
 void World::updateBackground(){
-
+    for(int i = 0; i < MAX_STARS; ++i){
+        if(i % 10 == 0){
+            //Close stars
+            m_Stars[i].posX -= 3;
+        } 
+        else if(i % 5 == 0){
+            //Next stars back
+            m_Stars[i].posX -= 2;
+        }
+        else {
+            //furthest stars
+            m_Stars[i].posX -= 1;
+        }
+        if(m_Stars[i].posX <= -5){
+            m_Stars[i].posX = 810;
+            m_Stars[i].posY = rand() % 600 + 1;
+        }
+    }
 }
