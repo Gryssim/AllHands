@@ -80,10 +80,10 @@ void ShipTile::get_tile_class(char tile_marker)
     }
 }
 
-void ShipTile::draw(SDL_Renderer* renderer)
+void ShipTile::draw(SDL_Renderer* renderer, Camera* cam)
 {
     if (c_Texture == NULL) {
         printf("ShipNull");
     }
-    c_Texture->draw(renderer, posX, posY);
+    c_Texture->draw(renderer, posX - cam->getCamPosX(), posY - cam->getCamPosY());
 }

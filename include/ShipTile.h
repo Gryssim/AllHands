@@ -2,6 +2,7 @@
 #define SHIPTILE_H
 
 #include "Texture.h"
+#include "../include/Camera.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ public:
 
 	void get_tile_class(char tile_marker);
 
-	void draw(SDL_Renderer* renderer);
+	void draw(SDL_Renderer* renderer, Camera* cam);
     
     private:
 	int posX, posY;

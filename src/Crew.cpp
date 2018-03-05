@@ -34,11 +34,11 @@ bool Crew::removeHand(Hand newHand){
 
 void Crew::draw(SDL_Renderer* renderer, Camera* cam){
     for(int i = 0; i < m_AllHands.size(); ++i){
-        if(((m_AllHands[i].getX() < cam->getCamPosX() + 800) &&
-            (m_AllHands[i].getX() > cam->getCamPosX())) &&
-            ((m_AllHands[i].getY() < cam->getCamPosY() + 600) &&
-            (m_AllHands[i].getY() > cam->getCamPosY()))){        
-                m_AllHands[i].draw(renderer);
+        if(((m_AllHands[i].getX() < cam->getCamPosX() + 800 + 25) &&
+            (m_AllHands[i].getX() > cam->getCamPosX() - 25)) &&
+            ((m_AllHands[i].getY() < cam->getCamPosY() + 600 + 25) &&
+            (m_AllHands[i].getY() > cam->getCamPosY() - 25))){        
+                m_AllHands[i].draw(renderer, cam);
             }
     }
 }
