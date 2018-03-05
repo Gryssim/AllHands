@@ -76,6 +76,10 @@ void Texture::draw(SDL_Renderer* renderer, Vector2 pos){
     SDL_RenderCopy(renderer, m_Texture, NULL, &renderQuad);
 }
 
+void changeTextureColorByRGB(int r, int g, int b){
+    
+}
+
 int Texture::getWidth(){
     return m_Width;
 }

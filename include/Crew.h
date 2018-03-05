@@ -5,6 +5,7 @@
 #include <queue>
 
 #include "../include/Hand.h"
+#include "../include/Camera.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class Crew{
     bool addHand(Hand newHand);
     bool removeHand(Hand newHand);
 
-    void draw(SDL_Renderer* renderer);
+    void draw(SDL_Renderer* renderer, Camera* cam);
 
     int getMaxCrew();
     int getCurrentCrewCount();

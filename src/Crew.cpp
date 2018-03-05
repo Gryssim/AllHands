@@ -32,14 +32,14 @@ bool Crew::removeHand(Hand newHand){
     return success;
 }
 
-void Crew::draw(SDL_Renderer* renderer){
+void Crew::draw(SDL_Renderer* renderer, Camera* cam){
     for(int i = 0; i < m_AllHands.size(); ++i){
-        if(m_AllHands[i].getTexture() == NULL){
-            printf("Ugh\n");
-        } /*else {
-            printf("Texture exists!\n");
-        }*/
-        m_AllHands[i].draw(renderer);
+        if(((m_AllHands[i].getX() < cam->getCamPosX() + 800) &&
+            (m_AllHands[i].getX() > cam->getCamPosX())) &&
+            ((m_AllHands[i].getY() < cam->getCamPosY() + 600) &&
+            (m_AllHands[i].getY() > cam->getCamPosY()))){        
+                m_AllHands[i].draw(renderer);
+            }
     }
 }
 

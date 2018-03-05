@@ -8,6 +8,7 @@
 #include "../include/Crew.h"
 #include "../include/Ship.h"
 #include "../include/ShipTile.h"
+#include "../include/Camera.h"
 
 const int MAX_STARS = 100;
 
@@ -34,10 +35,20 @@ class World{
     void initBackground();
     void updateBackground();
 
+    int getWorldHeight();
+    int getWorldWidth();
+
+    Camera* getCamera();
+
     private:
     Ship m_Ship;
     Crew m_Crew;
     Texture* t_TestTileTexture;
+
+    int m_WorldWidth;
+    int m_WorldHeight;
+
+    Camera m_Camera;
 
     backgroundStar m_Stars[MAX_STARS];
     map<HandOccupation, Texture*> m_HandTextureMap;

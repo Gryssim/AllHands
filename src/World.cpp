@@ -4,10 +4,11 @@
 #include <time.h>
 
 #include "../include/World.h"
-#include "../include/Hand.h"
 
 
 World::World(){
+    m_WorldWidth = 800 * 4;
+    m_WorldHeight = 600 * 4;
     initBackground();
 }
 
@@ -56,35 +57,40 @@ void World::createCrew(){
 void World::draw(SDL_Renderer* renderer){
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     for(int i = 0; i < MAX_STARS; ++i){
-        if(i % 10 == 0){
-            //Closest stars -- scale by 5
-            drawStar(renderer, m_Stars[i], 3);                        
-        } 
-        else if(i % 5 == 0){
-            //Next stars back -- scale default by 2
-            drawStar(renderer, m_Stars[i], 2);
-        }
-        else {
-            //furthest stars -- each rect maybe 2px x 4px?
-            drawStar(renderer, m_Stars[i], 1);
+        if(((m_Stars[i].posX < m_Camera.getCamPosX() + 800) &&
+            (m_Stars[i].posX > m_Camera.getCamPosX())) && 
+            (m_Stars[i].posY < m_Camera.getCamPosY() + 600) &&
+            (m_Stars[i].posY > m_Camera.getCamPosY())){
+            if(i % 10 == 0){
+                //Closest stars -- scale by 5
+                drawStar(renderer, m_Stars[i], 3);                        
+            } 
+            else if(i % 5 == 0){
+                //Next stars back -- scale default by 2
+                drawStar(renderer, m_Stars[i], 2);
+            }
+            else {
+                //furthest stars -- each rect maybe 2px x 4px?
+                drawStar(renderer, m_Stars[i], 1);
+            }
         }
     }
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x20, 0xFF);
-    m_Ship.draw(renderer);
-    m_Crew.draw(renderer);
+    m_Ship.draw(renderer, &m_Camera);
+    m_Crew.draw(renderer, &m_Camera);
 }
 
 void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
     int defLength = 4, defWidth = 2;
     SDL_Rect vertRect = {
-        star.posX - ((defWidth / 2)* scale),    //x
-        star.posY,                              //y
+        star.posX - ((defWidth / 2)* scale) - m_Camera.getCamPosX(),    //x
+        star.posY  - m_Camera.getCamPosY(),                             //y
         defLength * scale,                      //h
         defWidth * scale                        //w
     }; 
     SDL_Rect horRect = {
-        star.posX,                              //x
-        star.posY - ((defWidth / 2) * scale),   //y
+        star.posX - m_Camera.getCamPosX(),                              //x
+        star.posY - ((defWidth / 2) * scale) - m_Camera.getCamPosY(),   //y
         defWidth * scale,                       //h
         defLength * scale                       //w
     };         
@@ -94,6 +100,7 @@ void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
 
 void World::update(){
     updateBackground();
+    m_Camera.update();
 }
 
 void World::initBackground(){
@@ -123,4 +130,8 @@ void World::updateBackground(){
             m_Stars[i].posY = rand() % 600 + 1;
         }
     }
+}
+
+Camera* World::getCamera(){
+    return &m_Camera;
 }

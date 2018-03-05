@@ -28,6 +28,9 @@ class Texture{
     void draw(SDL_Renderer* renderer, int xPos, int yPos);
     void draw(SDL_Renderer* renderer, Vector2 pos);
 
+    //Alter textures color
+    void changeTextureColorByRGB(int r, int g, int b);
+
     //get dimensions of image
     int getWidth();
     int getHeight();
