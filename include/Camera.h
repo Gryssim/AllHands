@@ -11,8 +11,13 @@ class Camera{
 
     void update();
 
+    void startMove();
+    void stopMove();
+
     int getCamPosX();
     int getCamPosY();
+    double getCamVelX();
+    double getCamVelY();
 
     void setCamPosX(int posX);
     void setCamPosY(int posY);
@@ -20,8 +25,12 @@ class Camera{
     void moveCamera(int moveOnX, int moveOnY);
 
     private:
+    bool isMoving;
+
     double m_CamVelX;
     double m_CamVelY;
+    
+    double m_VelDecay;
 
     double m_VelCap;
 

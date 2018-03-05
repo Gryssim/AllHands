@@ -4,6 +4,7 @@
 //General class for a singular Hand/crewman.
 #include "../include/Vector2.h"
 #include "../include/Texture.h"
+#include "../include/Camera.h"
 
 using namespace std;
 
@@ -27,7 +28,7 @@ class Hand{
 
     bool operator==(const Hand& rightHand) const;
 
-    void draw(SDL_Renderer* renderer);
+    void draw(SDL_Renderer* renderer, Camera* cam);
 
     int getId();
 

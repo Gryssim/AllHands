@@ -30,12 +30,12 @@ bool Hand::operator==(const Hand& rightHand) const{
     return this->m_Id == rightHand.m_Id;
 }
 
-void Hand::draw(SDL_Renderer* renderer){
+void Hand::draw(SDL_Renderer* renderer, Camera* cam){
     //printf("Hand Pos: x - %i    y - %i\n", m_xPos, m_yPos);
     if(m_HandTexture == NULL){
         printf("HandNull");
     }
-    m_HandTexture->draw(renderer, m_xPos, m_yPos);
+    m_HandTexture->draw(renderer, m_xPos - cam->getCamPosX(), m_yPos - cam->getCamPosY());
 }
 
 int Hand::getId(){

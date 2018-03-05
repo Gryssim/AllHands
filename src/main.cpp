@@ -45,9 +45,24 @@ int main(int argc, char* argv[]){
 						case SDLK_RIGHT:
 							gameWorld.getCamera()->moveCamera(1, 0);
 							break;
-
 						case SDLK_DOWN:
 							gameWorld.getCamera()->moveCamera(0, 1);
+							break;
+					}
+				}
+				else if(event.type == SDL_KEYUP){
+					switch(event.key.keysym.sym){
+						case SDLK_UP:
+							gameWorld.getCamera()->stopMove();
+							break;
+						case SDLK_LEFT:
+							gameWorld.getCamera()->stopMove();
+							break;
+						case SDLK_RIGHT:
+							gameWorld.getCamera()->stopMove();
+							break;
+						case SDLK_DOWN:
+							gameWorld.getCamera()->stopMove();
 							break;
 					}
 				}
