@@ -18,7 +18,9 @@ World::~World(){
 
 bool World::loadMedia(SDL_Renderer* renderer){
     bool success = true;
-    string basePath = "../assets/sprites/";
+	string basePath;
+	if (getenv("windir") != NULL) basePath = "assets\\sprites\\";
+	else basePath= "../assets/sprites/";
     t_TestTileTexture = new Texture;
     if(!(t_TestTileTexture->loadFromFile(renderer, basePath + "ShipTileProto.png" ))){
         success = false;
