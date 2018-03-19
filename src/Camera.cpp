@@ -40,9 +40,10 @@ void Camera::stopMove(){
 }
 
 void Camera::update(){
-    if((m_CamPosX + m_CamVelX >= 0) && (m_CamPosY + m_CamVelY >= 0)
-    && (m_CamPosX + m_CamVelX < 800 * 4) && (m_CamPosY + m_CamVelY < 600 * 4)){
+    if((m_CamPosX + m_CamVelX >= 0) && (m_CamPosX + m_CamVelX < 800 * 4)){
         m_CamPosX += m_CamVelX;
+    }
+    if((m_CamPosY + m_CamVelY >= 0) && (m_CamPosY + m_CamVelY < 600 * 4)){
         m_CamPosY += m_CamVelY;
     }
     if(!isMoving){
@@ -109,6 +110,6 @@ void Camera::moveCamera(int moveOnX, int moveOnY){
             m_CamVelY = -m_VelCap;
     }
 
-    printf("VelX : %f.0    VelY : %f.0\n", m_CamVelX, m_CamVelY);
-    printf("CamX : %i      CamY : %i\n", m_CamPosX, m_CamPosY);
+    //printf("VelX : %f.0    VelY : %f.0\n", m_CamVelX, m_CamVelY);
+    //printf("CamX : %i      CamY : %i\n", m_CamPosX, m_CamPosY);
 }
