@@ -18,7 +18,7 @@ class Crew{
     bool removeHand(Hand newHand);
 
     void draw(SDL_Renderer* renderer, Camera* cam);
-
+	void updateCrew();
     int getMaxCrew();
     int getCurrentCrewCount();
 

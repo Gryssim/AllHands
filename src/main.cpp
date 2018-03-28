@@ -14,6 +14,7 @@
 #include "../include/GameWindow.h"
 #include "../include/World.h"
 
+
 int main(int argc, char* argv[]){
 	bool quit = false;
 	GameWindow window(800, 600, "GameWindow");
@@ -69,7 +70,7 @@ int main(int argc, char* argv[]){
 			}
 			SDL_SetRenderDrawColor(window.getRenderer(), 0x00, 0x00, 0x20, 0xFF);
 			SDL_RenderClear(window.getRenderer());
-			gameWorld.update();
+			gameWorld.updateWorld();
 			gameWorld.draw(window.getRenderer());
 
 			SDL_RenderPresent(window.getRenderer());

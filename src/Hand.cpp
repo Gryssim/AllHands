@@ -66,7 +66,19 @@ void Hand::draw(SDL_Renderer* renderer, Camera* cam){
         printf("HandNull");
     }
     m_HandTexture->draw(renderer, m_xPos - cam->getCamPosX(), m_yPos - cam->getCamPosY());
-	move();
+	move(); // Levi
+}
+
+void Hand::handleMovement() // Levi
+{
+	int x = rand() % 4;
+	switch (x)
+	{
+	case 0: m_VelY -= HAND_VEL; break;
+	case 1: m_VelY += HAND_VEL; break;
+	case 2: m_VelX -= HAND_VEL; break;
+	case 3: m_VelX += HAND_VEL; break;
+	}
 }
 
 int Hand::getId(){

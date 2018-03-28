@@ -46,6 +46,11 @@ void Crew::draw(SDL_Renderer* renderer, Camera* cam){
 int Crew::getMaxCrew(){
     return m_MaxCrew;
 }
+
 int Crew::getCurrentCrewCount(){
     return m_CurrentCrewCount;
+}
+
+void Crew::updateCrew() {
+
 }

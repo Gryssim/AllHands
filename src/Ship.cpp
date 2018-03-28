@@ -28,3 +28,7 @@ void Ship::draw(SDL_Renderer* renderer, Camera* cam){
 int Ship::getHull(){   
     return m_Hull;
 }
+
+void Ship::updateShip() {
+
+}

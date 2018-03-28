@@ -30,7 +30,7 @@ class World{
     void draw(SDL_Renderer* renderer);
     void drawStar(SDL_Renderer* renderer, backgroundStar star, int scale);
 
-    void update();
+    void updateWorld();
 
     void initBackground();
     void updateBackground();

@@ -4,7 +4,6 @@
 #include <time.h>
 
 #include "../include/World.h"
-#include "../include/Hand.h"
 
 
 World::World(){
@@ -43,7 +42,6 @@ bool World::loadMedia(SDL_Renderer* renderer){
 }
 
 void World::createShip(){
-    
     for(int i = 0; i < 5; i ++){
         ShipTile newTile(t_TestTileTexture, Med_Bay, (i * 74) + 100, 300);
         m_Ship.addTile(newTile);
@@ -85,18 +83,6 @@ void World::draw(SDL_Renderer* renderer){
     m_Crew.draw(renderer, &m_Camera);
 }
 
-void Hand::handleMovement() // Levi
-{
-	int x = rand() % 4;
-		switch (x)
-		{
-		case 0: m_VelY -= HAND_VEL; break;
-		case 1: m_VelY += HAND_VEL; break;
-		case 2: m_VelX -= HAND_VEL; break;
-		case 3: m_VelX += HAND_VEL; break;
-		}
-}
-
 void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
     int defLength = 4, defWidth = 2;
     SDL_Rect vertRect = {
@@ -115,7 +101,7 @@ void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
     SDL_RenderFillRect(renderer, &horRect);
 }
 
-void World::update(){
+void World::updateWorld(){
     updateBackground();
     m_Camera.update();
 }

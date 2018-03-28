@@ -29,7 +29,7 @@ class Hand{
 
 	void move(); // Levi
 	void handleMovement();
-	static const int HAND_VEL = 10; //Maximum axis velocity of the dot
+	static const int HAND_VEL = 10; //Maximum axis velocity of the crew
 
     bool operator==(const Hand& rightHand) const;
 
