@@ -22,8 +22,38 @@ Hand::Hand(Texture* texture, HandOccupation job, Vector2 pos){
     m_Job = job;
 }
 
+Hand::Hand(Texture* texture, HandOccupation job, int Hand_Vel) { // Levi
+	m_xPos = 0;
+	m_yPos = 0;
+
+	m_VelX = 0;
+	m_VelY = 0;
+}
+
 Hand::~Hand(){
 
+}
+
+void Hand::move() // Levi
+{
+	//Move the hand left or right
+	m_xPos += m_VelX;
+
+	//If the hand went too far to the left or right
+	if ((m_xPos < 0) || (m_xPos + 20 > 800)) // Hand Width 20 & Tile (world) Width 800
+	{
+		//Move back
+		m_xPos -= m_VelX;
+	}
+	//Move the Hand up or down
+	m_yPos += m_VelY;
+
+	//If the Hand went too far up or down
+	if ((m_yPos < 0) || (m_yPos + 20 > 600)) // Hand Height 20 & Tile(world) Height 600
+	{
+		//Move back
+		m_yPos -= m_VelY;
+	}
 }
 
 bool Hand::operator==(const Hand& rightHand) const{
@@ -36,6 +66,7 @@ void Hand::draw(SDL_Renderer* renderer, Camera* cam){
         printf("HandNull");
     }
     m_HandTexture->draw(renderer, m_xPos - cam->getCamPosX(), m_yPos - cam->getCamPosY());
+	move();
 }
 
 int Hand::getId(){

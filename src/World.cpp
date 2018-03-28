@@ -4,6 +4,7 @@
 #include <time.h>
 
 #include "../include/World.h"
+#include "../include/Hand.h"
 
 
 World::World(){
@@ -82,6 +83,18 @@ void World::draw(SDL_Renderer* renderer){
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x20, 0xFF);
     m_Ship.draw(renderer, &m_Camera);
     m_Crew.draw(renderer, &m_Camera);
+}
+
+void Hand::handleMovement() // Levi
+{
+	int x = rand() % 4;
+		switch (x)
+		{
+		case 0: m_VelY -= HAND_VEL; break;
+		case 1: m_VelY += HAND_VEL; break;
+		case 2: m_VelX -= HAND_VEL; break;
+		case 3: m_VelX += HAND_VEL; break;
+		}
 }
 
 void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){

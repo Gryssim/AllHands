@@ -24,7 +24,12 @@ class Hand{
     Hand(Texture* texture, HandOccupation job);
     Hand(Texture* texture, HandOccupation job, int xPos, int yPos);
     Hand(Texture* texture, HandOccupation job, Vector2 pos);
+	Hand(Texture* texture, HandOccupation job, int Hand_Velocity); // Levi
     ~Hand();
+
+	void move(); // Levi
+	void handleMovement();
+	static const int HAND_VEL = 10; //Maximum axis velocity of the dot
 
     bool operator==(const Hand& rightHand) const;
 
@@ -42,6 +47,7 @@ class Hand{
     Texture* m_HandTexture;
     HandOccupation m_Job;
     int m_xPos, m_yPos;
+	int m_VelX, m_VelY; // Levi
     int m_Id;
 };
 
