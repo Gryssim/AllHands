@@ -52,5 +52,5 @@ int Crew::getCurrentCrewCount(){
 }
 
 void Crew::updateCrew() {
-
+	m_Hand.updateMove();
 }

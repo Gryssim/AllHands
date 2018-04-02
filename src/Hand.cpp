@@ -8,9 +8,11 @@ Hand::Hand(Texture* texture, HandOccupation job){
     m_Job = job;
 }
 
-Hand::Hand(Texture* texture, HandOccupation job, int xPos, int yPos){
+Hand::Hand(Texture* texture, HandOccupation job, int xPos, int yPos, int Hand_Vel){
     m_xPos = xPos;
     m_yPos = yPos;
+	m_VelX = 0;
+	m_VelY = 0;
     m_HandTexture = texture;
     m_Job = job;
 }
@@ -22,20 +24,11 @@ Hand::Hand(Texture* texture, HandOccupation job, Vector2 pos){
     m_Job = job;
 }
 
-Hand::Hand(Texture* texture, HandOccupation job, int Hand_Vel) { // Levi
-	m_xPos = 0;
-	m_yPos = 0;
-
-	m_VelX = 0;
-	m_VelY = 0;
-}
-
 Hand::~Hand(){
 
 }
 
-void Hand::move() // Levi
-{
+void Hand::move(){ // Levi
 	//Move the hand left or right
 	m_xPos += m_VelX;
 
@@ -69,11 +62,9 @@ void Hand::draw(SDL_Renderer* renderer, Camera* cam){
 	move(); // Levi
 }
 
-void Hand::handleMovement() // Levi
-{
+void Hand::updateMove(){ // Levi
 	int x = rand() % 4;
-	switch (x)
-	{
+	switch (x) {
 	case 0: m_VelY -= HAND_VEL; break;
 	case 1: m_VelY += HAND_VEL; break;
 	case 2: m_VelX -= HAND_VEL; break;

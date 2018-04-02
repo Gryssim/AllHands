@@ -20,37 +20,31 @@ enum HandOccupation {
 
 class Hand{
     public:
+		static const int HAND_VEL = 10; //Maximum axis velocity of the crew
 
-    Hand(Texture* texture, HandOccupation job);
-    Hand(Texture* texture, HandOccupation job, int xPos, int yPos);
-    Hand(Texture* texture, HandOccupation job, Vector2 pos);
-	Hand(Texture* texture, HandOccupation job, int Hand_Velocity); // Levi
-    ~Hand();
+		Hand(Texture* texture, HandOccupation job);
+		Hand(Texture* texture, HandOccupation job, int xPos, int yPos, int Hand_Velocity);
+		Hand(Texture* texture, HandOccupation job, Vector2 pos);
+		~Hand();
+		void move(); // Levi
+		void updateMove();
+		void draw(SDL_Renderer* renderer, Camera* cam);
 
-	void move(); // Levi
-	void handleMovement();
-	static const int HAND_VEL = 10; //Maximum axis velocity of the crew
-
-    bool operator==(const Hand& rightHand) const;
-
-    void draw(SDL_Renderer* renderer, Camera* cam);
-
-    int getId();
-
-    Vector2 getXYPos();
-    int getX();
-    int getY();
-
-    Texture* getTexture();
+		bool operator==(const Hand& rightHand) const;
+		
+		int getId();
+		int getX();
+		int getY();
+		Texture* getTexture();
+		Vector2 getXYPos();
 
     private:
-    Texture* m_HandTexture;
-    HandOccupation m_Job;
-    int m_xPos, m_yPos;
-	int m_VelX, m_VelY; // Levi
-    int m_Id;
+		Texture* m_HandTexture;
+		HandOccupation m_Job;
+		int m_xPos, m_yPos;
+		int m_VelX, m_VelY; // Levi
+		int m_Id;
 };
-
 
 string HandOccupationToString(HandOccupation job);
 
