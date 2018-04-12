@@ -23,7 +23,6 @@ class Ship{
     // etc.
 
     int getHull();
-	void updateShip();
 
     private:
     int m_Hull;

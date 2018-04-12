@@ -37,10 +37,12 @@ bool World::loadMedia(SDL_Renderer* renderer){
             m_HandTextureMap.insert(pair<HandOccupation, Texture*>((HandOccupation) i, tempTexture));
         }
     }
+
     return success;
 }
 
 void World::createShip(){
+    
     for(int i = 0; i < 5; i ++){
         ShipTile newTile(t_TestTileTexture, Med_Bay, (i * 74) + 100, 300);
         m_Ship.addTile(newTile);
@@ -49,7 +51,7 @@ void World::createShip(){
 
 void World::createCrew(){
     for(int i = 0; i < m_Crew.getMaxCrew(); ++i){
-        Hand newHand(m_HandTextureMap[ENGINEER], ENGINEER, (i * 10) + 10, 300, 10);
+        Hand newHand(m_HandTextureMap[ENGINEER], ENGINEER, (i * 10) + 110, 300);
         m_Crew.addHand(newHand);
     }
 }
@@ -100,8 +102,7 @@ void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
     SDL_RenderFillRect(renderer, &horRect);
 }
 
-void World::updateWorld(){
-	m_Crew.updateCrew();
+void World::update(){
     updateBackground();
     m_Camera.update();
 }

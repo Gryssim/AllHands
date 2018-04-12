@@ -2,7 +2,7 @@
 #include "../include/Crew.h"
 
 Crew::Crew(){
-    m_MaxCrew = 20; // Not Final
+    m_MaxCrew = 1; // Not Final
     m_CurrentCrewCount = 0;
 }
 
@@ -46,11 +46,6 @@ void Crew::draw(SDL_Renderer* renderer, Camera* cam){
 int Crew::getMaxCrew(){
     return m_MaxCrew;
 }
-
 int Crew::getCurrentCrewCount(){
     return m_CurrentCrewCount;
-}
-
-void Crew::updateCrew() {
-	m_Hand.updateMove();
 }

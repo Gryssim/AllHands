@@ -1,9 +1,9 @@
 #ifdef __linux__ 
-	#include <SDL2/SDL_image.h>
-	#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL.h>
 #elif _WIN32
-	#include <SDL.h>
-	#include <SDL_image.h>
+#include <SDL.h>
+#include <SDL_image.h>
 #else
 
 #endif
@@ -13,7 +13,6 @@
 
 #include "../include/GameWindow.h"
 #include "../include/World.h"
-
 
 int main(int argc, char* argv[]){
 	bool quit = false;
@@ -70,7 +69,7 @@ int main(int argc, char* argv[]){
 			}
 			SDL_SetRenderDrawColor(window.getRenderer(), 0x00, 0x00, 0x20, 0xFF);
 			SDL_RenderClear(window.getRenderer());
-			gameWorld.updateWorld();
+			gameWorld.update();
 			gameWorld.draw(window.getRenderer());
 
 			SDL_RenderPresent(window.getRenderer());
