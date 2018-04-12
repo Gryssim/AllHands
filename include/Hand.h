@@ -7,6 +7,8 @@
 #include "../include/Camera.h"
 //Levi
 #include <vector>
+#include <iostream>
+#include <string>
 ///////////////////////////////////////////////////////////////
 
 using namespace std;
@@ -21,27 +23,38 @@ enum HandOccupation {
     INVALID 
     };
 
-class Hand{
-    public:
+class Hand {
+public:
+	//Constructor (why are there multiple?)
+		//Hand(Texture* texture, HandOccupation job);
+		//Hand(Texture* texture, HandOccupation job, Vector2 pos);
+	Hand(Texture* texture, HandOccupation job, int xPos, int yPos);
+	//Destuctor
+	~Hand();
 
-    Hand(Texture* texture, HandOccupation job);
-    Hand(Texture* texture, HandOccupation job, int xPos, int yPos);
-    Hand(Texture* texture, HandOccupation job, Vector2 pos);
-    ~Hand();
-
+	//Accessor's
+		//Vector2 getXYPos();
     bool operator==(const Hand& rightHand) const;
-
     void draw(SDL_Renderer* renderer, Camera* cam);
-
     int getId();
-
-    Vector2 getXYPos();
-    int getX();
+	int getX();
     int getY();
 
     Texture* getTexture();
 	///////////////////////////////////////////////////////////////
 	//Levi
+	int getExhaustion(), getHunger(), getDehydration(), getAsphixiation(), getExperience();
+	string getOccupation(), getRank();
+	void setOccupation(string occupation);
+	void setRank(string rank);
+	void setY(int y_pos);
+	void setX(int x_pos);
+	void setID(int ID);
+	void setExhaustion(int exhaustion);
+	void setHunger(int hunger);
+	void setDehydration(int dehydration);
+	void setAsphixiation(int asphixiation);
+	void setExperience(int experience);
 	void handle_input();
 	void move(std::vector<SDL_Rect> &rects);
 	vector<SDL_Rect> &get_rects();
@@ -54,6 +67,8 @@ class Hand{
 	int m_Id;
 	///////////////////////////////////////////////////////////////
 	//Levi
+	int exhaustion, hunger, dehydration, asphixiation, experience;
+	string occupation, rank;
 	vector<SDL_Rect> box;
 	int xVel, yVel;
 	void shift_boxes();
