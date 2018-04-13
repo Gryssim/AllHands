@@ -98,7 +98,6 @@ Texture* Hand::getTexture(){
 }
 string HandOccupationToString(HandOccupation job){
     string returnString = "";
-
     switch(job){
         case CAPTAIN:
             returnString = "captain";
@@ -119,7 +118,6 @@ string HandOccupationToString(HandOccupation job){
             returnString = "";
             break;
     }
-
     return returnString;
 }
 ///////////////////////////////////////////////////////////////
@@ -160,26 +158,26 @@ void Hand::sleep() {
 		//remove bed from list;
 		//asleep == true;
 		//while (sleeptimer >= 0){
-			//increase deydration at slower rate.
-			//increase hunger at slower rate.
-			//decrease exhaustion at some rate.
+			//setDeydration(getDeydration() +1);// at slower rate.
+			//setHunger(getHunger() +1);//increase hunger at slower rate.
+			//setExhaustion(getExhaustion() -10);//decrease exhaustion at some rate.
 			//sleeptime--;
-		//asleep ==false;
+		//asleep == false;
 		//add bed to list;
 	//}
 	//else {sleep();}			
 }
 void Hand::eat() {
 	cout << getId() << " is Eating\n";
-	//hand_Id.path_to(food_dispenser);
-	//decrease ship food storage;
-	//decrease hunger;
+	//path_to(food_dispenser);
+	//m_Ship.setFoodStorage(getFoodStorage()-100);//decrease ship food storage
+	//setHunger(gethunger()-100);//decrease hunger
 }
 void Hand::drink() {
 	cout << getId() << " is Drinking\n";
-	//hand_Id.path_to(liquid_dispenser);
-	//decrease ship hydration storage;
-	//decrease dehydration;
+	//path_to(liquid_dispenser);
+	//m_Ship.setWaterStorage(getWaterStorage()-100);//decrease ship hydration storage
+	//setDehydration(getDehydration()-100); //decrease dehydration
 }
 void Hand::pass_out() {
 	cout << getId() << " is Passed Out\n";
