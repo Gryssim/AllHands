@@ -1,9 +1,11 @@
 #ifdef __linux__ 
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #elif _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #else
 
 #endif
@@ -30,6 +32,9 @@ class Texture{
 
     //Load desired image (png) from specified path
     bool loadFromFile(SDL_Renderer* renderer, string path);
+
+    //Create texture from provided string and color
+    bool createFromString(SDL_Renderer* renderer,TTF_Font* font, string textureText, SDL_Color textColor);
 
     //For deleting a texture, free up resources.
     void free();

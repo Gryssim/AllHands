@@ -1,9 +1,11 @@
 #ifdef __linux__ 
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #elif _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #else
 
 #endif
@@ -63,6 +65,7 @@ bool GameWindow::init(){
 					printf("SDL_Image could not start! SDL Error: %s\n", SDL_GetError());
 					success = false;
 				}
+				
 			}
 		}
 	}

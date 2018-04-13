@@ -1,9 +1,11 @@
 #ifdef __linux__ 
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #elif _WIN32
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #else
 
 #endif
@@ -41,6 +43,8 @@ class GameWindow {
 
     SDL_Window* m_Window;
     SDL_Renderer* m_Renderer;
+
+    TTF_Font* m_Font;
 
     int m_WinHeight;
     int m_WinWidth;

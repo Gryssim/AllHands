@@ -61,6 +61,30 @@ bool Texture::loadFromFile(SDL_Renderer* renderer, string path){
     return m_Texture != NULL;
 }
 
+bool Texture::createFromString(SDL_Renderer* renderer, TTF_Font* font, string textureText, SDL_Color textColor){
+
+    free();
+
+    //render text surface
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);
+    if(textSurface == NULL){
+        printf("Unable to create text surface. TTF_Error: %s\n", TTF_GetError());
+    } else {
+        //Create texture from surface
+        m_Texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+        if(m_Texture == NULL){
+            printf("Unable to create texture from surface. SDL_Error: %s\n", SDL_GetError());
+        } else {
+            m_Width = textSurface->w;
+            m_Height = textSurface->h;
+        }
+        SDL_FreeSurface(textSurface);
+    }
+
+    return m_Texture != NULL;
+}
+
+
 //Only call free when closing the program or when loading a new texture to reference,
 // as many objects will be sharing the textures.
 void Texture::free(){

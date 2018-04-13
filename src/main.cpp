@@ -8,18 +8,17 @@
 
 #endif
 
-#include <string>
-#include <stdio.h>
-
-#include "../include/GameWindow.h"
-#include "../include/World.h"
+#include "../include/Game.h"
 
 int main(int argc, char* argv[]){
-	bool quit = false;
-	GameWindow window(800, 600, "GameWindow");
-	World gameWorld;
+	Game game;
+	game.run();
 
-	
+	//bool quit = false;
+	//GameWindow window(800, 600, "GameWindow");
+	//World gameWorld;
+
+	/*
 	if(!window.init()){
 		printf("Unable to initialize GameWindow!");
 	} else {
@@ -81,6 +80,6 @@ int main(int argc, char* argv[]){
 
 		window.close();
 	}
-	
+	*/
 	return 0;
 }
