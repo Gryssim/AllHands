@@ -6,8 +6,8 @@
 #include <vector>
 #include <string>
 
-const int hand_WIDTH = 20;
-const int hand_HEIGHT = 20;
+const int hand_WIDTH = 10;
+const int hand_HEIGHT = 10;
 SDL_Event event;
 ///////////////////////////////////////////////////////////////
 //Hand::Hand(Texture* texture, HandOccupation job){
@@ -16,45 +16,51 @@ SDL_Event event;
 //    m_HandTexture = texture;
 //    m_Job = job;
 //}
-Hand::Hand(Texture* texture, HandOccupation job, int xPos, int yPos){
-	cout << "\n\tCreating a Hand...\n";
+Hand::Hand(Texture* texture, HandOccupation job, int xPos, int yPos, int id){//added int for ID
+	//why sending pointer of the texture in this call? or any of these really.
+	//would it make sense to just send ID, and assign these to specific ids?
     m_xPos = xPos;
     m_yPos = yPos;
     m_HandTexture = texture;
     m_Job = job;
 	///////////////////////////////////////////////////////////////
 	//Levi
-	exhaustion = 0;
-	hunger = 0;
-	dehydration = 0;
-	asphixiation = 0;
-	experience = 0;
+	m_Id = id;
+	cout << "Creating Hand with ID: " << getId() << endl;
 	xVel = 0;
 	yVel = 0;
+	EXHAUSTION = 0;
+	HUNGER = 0;
+	DEHYDRATION = 0;
+	ASPHIXIATION = 0;
+	EXPERIENCE = 0;
+	OCCUPATION = "NoOccuptation";
+	RANK = "NoRank";
 	box.resize(11);
-	box[0].w = 6;
+	box[0].w = 3;
 	box[0].h = 1;
-	box[1].w = 10;
+	box[1].w = 50;
 	box[1].h = 1;
-	box[2].w = 14;
+	box[2].w = 7;
 	box[2].h = 1;
-	box[3].w = 16;
+	box[3].w = 8;
 	box[3].h = 2;
-	box[4].w = 18;
+	box[4].w = 9;
 	box[4].h = 2;
-	box[5].w = 20;
+	box[5].w = 10;
 	box[5].h = 6;
-	box[6].w = 18;
+	box[6].w = 9;
 	box[6].h = 2;
-	box[7].w = 16;
+	box[7].w = 8;
 	box[7].h = 2;
-	box[8].w = 14;
+	box[8].w = 7;
 	box[8].h = 1;
-	box[9].w = 10;
+	box[9].w = 5;
 	box[9].h = 1;
-	box[10].w = 6;
+	box[10].w = 3;
 	box[10].h = 1;
 	shift_boxes();
+	checkHandStats();
 }
 //Hand::Hand(Texture* texture, HandOccupation job, Vector2 pos){
 //    m_xPos = pos.getX();
@@ -63,7 +69,7 @@ Hand::Hand(Texture* texture, HandOccupation job, int xPos, int yPos){
 //    m_Job = job;
 //}
 Hand::~Hand(){
-	cout << "\n\tDestroying a Hand...\n";
+	cout << "Destroyed Hand with ID: " << getId() << endl; //Levi
 }
 bool Hand::operator==(const Hand& rightHand) const{
     return this->m_Id == rightHand.m_Id;
@@ -118,47 +124,72 @@ string HandOccupationToString(HandOccupation job){
 }
 ///////////////////////////////////////////////////////////////
 //Levi
-void checkHandStats() {
-	//if (asphixiation > 10) { pass_out(); }
-	//if (dehydration > 25) { drink(); }
-	//if (hunger > 50) { eat(); }
-	//if (exhaustion > 60) { sleep(); }
-	//else { wander(); }
+void Hand::updateHand() {
+	for (int i = 0; i < 10; ++i) {
+		checkHandStats();
+	}
 }
-void sleep(int hand_Id) {
-	//hand_Id.path_to(bed);
-	//bool hand_Id.asleep;
-	//int sleeptimer = exhaustion*ticks?;
-	//if (bed == empty){
+void Hand::checkHandStats() {
+	displayStats();
+	if (getAsphixiation() > 10) { pass_out(); }
+	if (getDehydration() > 25) { drink(); }
+	if (getHunger() > 50) { eat(); }
+	if (getExhaustion() > 60) { sleep(); }
+	else { wander(); }
+}
+void Hand::displayStats() {
+	cout << "----------Hand Stats-----------\n";
+	cout << "| ID: " << m_Id << endl;
+	cout << "| Rank: " << RANK << endl;
+	cout << "| Occupation: " << OCCUPATION << endl;
+	cout << "| Asphixiationn: " << ASPHIXIATION << endl;
+	cout << "| Exhaustion: " << EXHAUSTION << endl;
+	cout << "| Dehydration: " << DEHYDRATION << endl;
+	cout << "| Hunger: " << HUNGER << endl;
+	cout << "| Experience: " << EXPERIENCE << endl;
+	cout << "| Posistion: x, y: " << m_xPos <<", " << m_yPos << endl;
+	cout << "| Velocity x, y: " << xVel << ", " << yVel << endl;
+	cout << "------------------------------\n";
+}
+void Hand::sleep() {
+	cout << getId() << " is Sleeping\n";
+	//path_to(bed);
+	//bool asleep;
+	//int sleeptimer = (getExhaustion()* 10)//10 not final;
+	//if (bed != NULL){
 		//remove bed from list;
-		//hand_Id.asleep == true;
+		//asleep == true;
 		//while (sleeptimer >= 0){
 			//increase deydration at slower rate.
 			//increase hunger at slower rate.
 			//decrease exhaustion at some rate.
 			//sleeptime--;
-		//hand_Id.asleep ==false;
+		//asleep ==false;
 		//add bed to list;
 	//}
-	//else {hand_Id.path_to(bed);}			
+	//else {sleep();}			
 }
-void eat(int hand_Id) {
+void Hand::eat() {
+	cout << getId() << " is Eating\n";
 	//hand_Id.path_to(food_dispenser);
 	//decrease ship food storage;
 	//decrease hunger;
 }
-void drink(int hand_Id) {
+void Hand::drink() {
+	cout << getId() << " is Drinking\n";
 	//hand_Id.path_to(liquid_dispenser);
 	//decrease ship hydration storage;
 	//decrease dehydration;
 }
-void pass_out(int hand_Id) {
+void Hand::pass_out() {
+	cout << getId() << " is Passed Out\n";
 	//if passed out for more than ____ die.
 }
-void wander(int hand_Id) {	//wander around between work stations or entertainment places.
+void Hand::wander() {	//wander around between work stations or entertainment places.
+	cout << getId() << " is Wandering\n";
 	//int x = 1+rand()%10;
-	//if (x == 1) {hand_Id.path_to(entertainment);}
-	//else {hand_Id.path_to(work);}
+	//if (x == 1) {path_to(entertainment);}
+	//else {path_to(work);}
 }
 bool check_collision(std::vector<SDL_Rect> &A, std::vector<SDL_Rect> &B) {
 	int leftA, leftB;

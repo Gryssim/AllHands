@@ -14,6 +14,7 @@
 #include "../include/GameWindow.h"
 #include "../include/World.h"
 
+
 int main(int argc, char* argv[]){
 	bool quit = false;
 	GameWindow window(800, 600, "GameWindow");

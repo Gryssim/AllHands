@@ -2,7 +2,6 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
-
 #include "../include/World.h"
 
 
@@ -51,7 +50,7 @@ void World::createShip(){
 
 void World::createCrew(){
     for(int i = 0; i < m_Crew.getMaxCrew(); ++i){
-        Hand newHand(m_HandTextureMap[ENGINEER], ENGINEER, (i * 10) + 110, 300);
+		Hand newHand(m_HandTextureMap[ENGINEER], ENGINEER, (i * 10) + 110, 300,1000+i);//added int for ID.
         m_Crew.addHand(newHand);
     }
 }

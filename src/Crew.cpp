@@ -2,7 +2,7 @@
 #include "../include/Crew.h"
 
 Crew::Crew(){
-    m_MaxCrew = 1; // Not Final
+    m_MaxCrew = 2; // Not Final
     m_CurrentCrewCount = 0;
 }
 
