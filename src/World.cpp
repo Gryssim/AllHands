@@ -138,3 +138,7 @@ void World::updateBackground(){
 Camera* World::getCamera(){
     return &m_Camera;
 }
+
+Crew *World::getCrew() {
+	return &m_Crew;
+}

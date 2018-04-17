@@ -40,6 +40,8 @@ class World{
 
     Camera* getCamera();
 
+	Crew *getCrew();
+
     private:
     Ship m_Ship;
     Crew m_Crew;

@@ -69,6 +69,8 @@ int main(int argc, char* argv[]){
 				}
 			}
 			SDL_SetRenderDrawColor(window.getRenderer(), 0x00, 0x00, 0x20, 0xFF);
+			//cout << "Hand ID: " << gameWorld.getCrew()->getCurrentCrewCount() << endl;
+
 			SDL_RenderClear(window.getRenderer());
 			gameWorld.update();
 			gameWorld.draw(window.getRenderer());

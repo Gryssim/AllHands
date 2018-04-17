@@ -69,7 +69,7 @@ Hand::Hand(Texture* texture, HandOccupation job, int xPos, int yPos, int id){//a
 //    m_Job = job;
 //}
 Hand::~Hand(){
-	cout << "Destroyed Hand with ID: " << getId() << endl; //Levi
+	//cout << "Destroyed Hand with ID: " << getId() << endl; //Levi
 }
 bool Hand::operator==(const Hand& rightHand) const{
     return this->m_Id == rightHand.m_Id;
