@@ -17,7 +17,7 @@ class Ship{
 
     void addTile(ShipTile tile);
 
-    void draw(SDL_Renderer* renderer, Camera* cam);
+    void draw(SDL_Renderer* renderer, Camera* cam, int currentFloor);
 
     //Will probably have a bunch of other member methods that have to do with malfunctions, damage, 
     // etc.

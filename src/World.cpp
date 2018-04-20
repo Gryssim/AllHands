@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
 
 #include "../include/World.h"
 
@@ -9,6 +10,7 @@
 World::World(){
     m_WorldWidth = 800 * 4;
     m_WorldHeight = 600 * 4;
+    m_CurrentFloor = 0;
     initBackground();
 }
 
@@ -41,12 +43,46 @@ bool World::loadMedia(SDL_Renderer* renderer){
     return success;
 }
 
-void World::createShip(){
-    
-    for(int i = 0; i < 5; i ++){
-        ShipTile newTile(t_TestTileTexture, Med_Bay, (i * 74) + 100, 300);
-        m_Ship.addTile(newTile);
+void World::createShip(string shipFile){
+    ifstream inf(shipFile.c_str());
+    int floor, j = 0;
+    string row;
+    //Read Line by Line until eof
+    //if first character is ! set floor to next char
+    //Set tiles by position in string 
+    //  (x = char index * tile Size + offset, y = char row * tile Size + offset) 
+    while(getline(inf, row)){
+        //printf("%s\n", row.c_str());
+        if(row[0] == '!'){
+            floor = (int) row[1] - 48;
+            j = 0;
+        } else {
+            for(int i = 0; i < row.size(); ++i){
+                if(row[i] == ' '){
+                    continue;
+                } else {
+                    ShipTile newTile(
+                        ShipTile::get_marker_class(row[i]),
+                        floor,
+                        (i * 25) + (100), //x pos
+                        (j * 25) + (300 + (floor * 20))  //y pos
+                        );
+                    //printf("x:%i y:%i floor: %i\n", newTile.get_posX(), newTile.get_posY(), floor);
+                    m_Ship.addTile(newTile);
+                }
+            }
+            j++;
+        }
+        m_NumFloors = floor;
     }
+    /*
+    for(int j = 0; j < 5; j++){
+       for(int i = 0; i < 20; i++){
+            ShipTile newTile(Med_Bay, 1, (i * 25) + 100, (j * 25) + 300);
+        m_Ship.addTile(newTile);
+        }
+    }
+    */
 }
 
 void World::createCrew(){
@@ -79,9 +115,9 @@ void World::draw(SDL_Renderer* renderer){
         }
         //} End of bounding if
     }
-    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x20, 0xFF);
-    m_Ship.draw(renderer, &m_Camera);
+    m_Ship.draw(renderer, &m_Camera, m_CurrentFloor);
     m_Crew.draw(renderer, &m_Camera);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x20, 0xFF);
 }
 
 void World::drawStar(SDL_Renderer* renderer, backgroundStar star, int scale){
@@ -133,6 +169,28 @@ void World::updateBackground(){
             m_Stars[i].posX = 810;
             m_Stars[i].posY = rand() % 600 + 1;
         }
+    }
+}
+
+int World::getCurrentFloor(){
+    return m_CurrentFloor;
+}
+
+int World::getNumFloors(){
+    return m_NumFloors;
+}
+
+///Change floor by input number, if negative move towards top floors, if positive
+/// move towards bottom floors. If 0, reset to top
+void World::changeFloor(int changeFloorBy){
+    if((m_CurrentFloor + changeFloorBy) <= m_NumFloors && (m_CurrentFloor + changeFloorBy) >= 0){
+        if(changeFloorBy != 0){
+            m_CurrentFloor += changeFloorBy;
+        } else {
+            m_CurrentFloor = 0;
+        }
+    } else {
+        printf("Unable to change floor.\n");
     }
 }
 

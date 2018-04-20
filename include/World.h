@@ -1,6 +1,9 @@
 #ifndef WORLD_H
 #define WORLD_H
 
+using namespace std;
+
+#include <string>
 #include <map>
 
 #include "../include/Texture.h"
@@ -23,7 +26,7 @@ class World{
 
     bool loadMedia(SDL_Renderer* renderer);
 
-    void createShip();
+    void createShip(string shipFile);
 
     void createCrew();
 
@@ -37,6 +40,10 @@ class World{
 
     int getWorldHeight();
     int getWorldWidth();
+    int getCurrentFloor();
+    int getNumFloors();
+
+    void changeFloor(int dir);
 
     Camera* getCamera();
 
@@ -47,6 +54,8 @@ class World{
 
     int m_WorldWidth;
     int m_WorldHeight;
+    int m_CurrentFloor;
+    int m_NumFloors;
 
     Camera m_Camera;
 

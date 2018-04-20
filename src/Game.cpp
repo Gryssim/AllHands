@@ -27,11 +27,12 @@ Game::~Game(){
 
 void Game::run(){
     if(!m_GameWindow.init()){
-        printf("Unable to initialize GameWindow!");
+        printf("Unable to initialize GameWindow!\n");
     } else {
         m_GameWorld.loadMedia(m_GameWindow.getRenderer());
         m_GameWorld.createCrew();
-        m_GameWorld.createShip();
+        m_GameWorld.createShip("../assets/Ships/ship.shp");
+        //printf("Ship created\n");
         SDL_Event event;
 
         while(!m_Quit){
@@ -53,6 +54,12 @@ void Game::run(){
                             break;
                         case SDLK_DOWN:
                             m_GameWorld.getCamera()->moveCamera(0, 1);
+                            break;
+                        case SDLK_PERIOD:
+                            m_GameWorld.changeFloor(-1);
+                            break;
+                        case SDLK_COMMA:
+                            m_GameWorld.changeFloor(1);
                             break;
                     }
                 }
