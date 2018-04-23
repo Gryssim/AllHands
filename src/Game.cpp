@@ -56,10 +56,10 @@ void Game::run(){
                             m_GameWorld.getCamera()->moveCamera(0, 1);
                             break;
                         case SDLK_PERIOD:
-                            m_GameWorld.changeFloor(-1);
+                            m_GameWorld.changeFloor(1);
                             break;
                         case SDLK_COMMA:
-                            m_GameWorld.changeFloor(1);
+                            m_GameWorld.changeFloor(-1);
                             break;
                     }
                 }

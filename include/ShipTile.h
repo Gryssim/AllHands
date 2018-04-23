@@ -46,6 +46,7 @@ public:
 	Tile_type tile_class;
     double hull_str;
 	Texture * m_Texture;
+	//Equipment m_EquipOnTile
 };
 
 #endif
