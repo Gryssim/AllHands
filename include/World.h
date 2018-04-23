@@ -13,7 +13,7 @@ using namespace std;
 #include "../include/ShipTile.h"
 #include "../include/Camera.h"
 
-const int MAX_STARS = 100;
+const int MAX_STARS = 200;
 
 struct backgroundStar{
     int posX, posY;
