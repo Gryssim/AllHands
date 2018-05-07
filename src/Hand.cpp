@@ -1,5 +1,6 @@
 #include "../include/Hand.h"
 #include "../include/Texture.h"
+#include "../include/PathFinding.h"
 
 ///////////////////////////////////////////////////////////////
 //Levi
@@ -151,7 +152,7 @@ void Hand::displayStats() {
 }
 void Hand::sleep() {
 	cout << getId() << " is Sleeping\n";
-	//path_to(bed);
+	//PathFinding::FindPath(currentPos(), bed.getXY());
 	//bool asleep;
 	//int sleeptimer = (getExhaustion()* 10)//10 not final;
 	//if (bed != NULL){
@@ -169,13 +170,13 @@ void Hand::sleep() {
 }
 void Hand::eat() {
 	cout << getId() << " is Eating\n";
-	//path_to(food_dispenser);
+	//PathFinding::FindPath(currentPos(), food_Dispenser.getXY());
 	//m_Ship.setFoodStorage(getFoodStorage()-100);//decrease ship food storage
 	//setHunger(gethunger()-100);//decrease hunger
 }
 void Hand::drink() {
 	cout << getId() << " is Drinking\n";
-	//path_to(liquid_dispenser);
+	//PathFinding::FindPath(currentPos(), liquid_dispenser.getXY());
 	//m_Ship.setWaterStorage(getWaterStorage()-100);//decrease ship hydration storage
 	//setDehydration(getDehydration()-100); //decrease dehydration
 }
@@ -186,8 +187,8 @@ void Hand::pass_out() {
 void Hand::wander() {	//wander around between work stations or entertainment places.
 	cout << getId() << " is Wandering\n";
 	//int x = 1+rand()%10;
-	//if (x == 1) {path_to(entertainment);}
-	//else {path_to(work);}
+	//if (x == 1) {PathFinding::FindPath(currentPos(), entertainment.getXY());}
+	//else {PathFinding::FindPath(currentPos(), work.getXY());}
 }
 bool check_collision(std::vector<SDL_Rect> &A, std::vector<SDL_Rect> &B) {
 	int leftA, leftB;
